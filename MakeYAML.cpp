@@ -22,8 +22,9 @@ void MakeYAML(std::string file_name, std::string x_header, std::string y_header,
 			fout << "  values:" << std::endl;
 			for (int i = 0; i < y.size(); i++) {
 				fout << "  - value: " << y[i] << std::endl;
-				fout << "    errors:" << std::endl;
-				if (!ey.size()) { fout << "    - {" << yerr_label << ": " << ey[i] << "}" << std::endl; }
+				fout << "    errors:  " << std::endl;
+				if (!ey.size()) { fout << "    - {" << xerr_label << ": " << ex[i] << ", label: 'stat'}"; }
+				if (!ey.size()) { fout << "    - {" << yerr_label << ": " << ey[i] << ", label: 'sys'}" << std::endl; }
 			}
 		}
 

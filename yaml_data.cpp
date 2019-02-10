@@ -1,26 +1,27 @@
 #include <iostream>
-#include <stdlib.h>
 #include <vector>
-#include <string>
-#include <time.h>
 #include "MakeYAML.h"
 
 
-int main() {
+int main(int argc, char** argv) {
 	std::vector<double> x, y, ex, ey;
 	std::vector<std::string> q;
+	double myx, myy, ystat, ysys;
 
-	srand(time(NULL));
-
-	q.push_back("Well this is a thing");
-	q.push_back("Science!");
-
-	for (int i = 0; i < 5; i++) {
-		x.push_back(rand());
-		y.push_back(x[i] * i);
-		ex.push_back(rand());
-		ey.push_back(rand());
+	if (argc != 4) {
+		std::cerr << "usage: yaml_data < data_filename yaml_filename x_axis y_axis" << std::endl;
+		return 1;
 	}
 
-	MakeYAML("junk.yaml", "X title", "Y title", q, x, y, ex, ey, "x err label", "y err label");
+	while (std::cin) {
+		std::cin >> myx >> myy >> ystat >> ysys;
+		x.push_back(myx);
+		y.push_back(myy);
+		ex.push_back(ystat);
+		ey.push_back(ysys);
+	}
+
+	MakeYAML(argv[1], argv[2], argv[3], q, x, y, ex, ey, "symerror", "symerror");
+
+	return 0;
 }
