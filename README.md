@@ -23,32 +23,33 @@ yaml_data debug filename
 ```
 A debug of 1 will print all values and names to the terminal. Filename is the name of the data file to be read.
 
-YAML maker can deal with many file types however each data file must be set up in the following fashion.
+YAML maker can deal with many file types however each data file must be set up in the following fashion. Please note that each set of y values must end with the string *** including the last set.
 
 ```
-X axis title:			String
-Y count					Integer
-Y axis tile #1:			String
+X axis title:				String
+Y count						Integer
+Y axis tile #1:				String
 ....
-Y axis title #N:		String
-Y qualifiers #1:		String
+Y axis title #N:			String
+Y qualifiers #1:			String
 ....
-Y qualifiers #N:		String
-Is bin:					yes,no
-X Stat error:			symmetric, asymmetric, none
-X Sys error:			symmetric, asymmetric, none
-Y error count			Integer
-Y error title #1:		String
-Y error type #1:		symmetric, asymmetric
+Y qualifiers #N:			String
+Is bin:						yes,no
+X Stat error:				symmetric, asymmetric, none
+X Sys error:				symmetric, asymmetric, none
+Y error count				Integer
+Y error title #1:			String
+Y error type #1:			symmetric, asymmetric
 ....
-Y error title #N:		String
-Y error type #N:		symmetric, asymmetric
+Y error title #N:			String
+Y error type #N:			symmetric, asymmetric
 Data
 X2 values /Y1 value / X1 Stat Error / X1 Sys Error / Y1 Error / ... / Y1N Error
 ***
 X2 values /Y2 value / X2 Stat Error / X2 Sys Error / Y2 Error / ... / Y2N Error
 ***
 Xn values /Yn value / Xn Stat Error / Xn Sys Error / YN Error / ... / YNN Error
+***
 ```
 
 Bin examples
