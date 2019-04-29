@@ -1,3 +1,9 @@
+/*
+YAML maker
+Tom Krobatsch
+tkrobats@vols.utk.edu
+*/
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -6,37 +12,34 @@
 #include <sstream>
 #include <algorithm>
 
+//serialize_encaps strips out any non-printable characters
+//and encloses '' around the string for latex equations
 std::string serialize_encaps(std::string input) {
 	std::string serialize;
-
 	serialize += "'";
-
 	for (int i = 0; i < input.length(); i++) {
 		if (!((input[i] < 0) || (input[i] > 255))) {
 			serialize += input[i];
 		}
 	}
-
+	//clear any spaces at end
 	serialize.erase(std::find_if(serialize.rbegin(), serialize.rend(),
 		std::not1(std::ptr_fun<int, int>(std::isspace))).base(), serialize.end());
-
 	serialize += "'";
-
 	return serialize;
 }
 
+//serialize strips out any non-printable characters
 std::string serialize(std::string input) {
 	std::string serialize;
-
 	for (int i = 0; i < input.length(); i++) {
 		if (!((input[i] < 0) || (input[i] > 255))) {
 			serialize += input[i];
 		}
 	}
-
+	//clear any spaces at end
 	serialize.erase(std::find_if(serialize.rbegin(), serialize.rend(),
 		std::not1(std::ptr_fun<int, int>(std::isspace))).base(), serialize.end());
-
 	return serialize;
 }
 
@@ -56,12 +59,13 @@ int main(int argc, char** argv) {
 	std::string x_title;
 	std::vector<std::string> y_titles, y_error_titles, qualifiers;
 	//loop and conditional varibles 
-	std::ifstream fin;
-	std::ofstream fout;
-	std::string out_file_name;
 	size_t found;
 	char bin_flag, x_stat_flag, x_sys_flag;
 	int y_count, y_error_count, data_counter, print_test;
+	//file and string handling
+	std::ifstream fin;
+	std::ofstream fout;
+	std::string out_file_name;
 	std::string input, serialized_string, temp;
 	std::stringstream ss;
 
@@ -192,7 +196,6 @@ int main(int argc, char** argv) {
 			//get y's
 			ss >> temp;
 			y.push_back(temp);
-
 			//get x stat errors depending on style
 			switch (x_stat_flag) {
 			case 'S':
@@ -233,7 +236,7 @@ int main(int argc, char** argv) {
 				break;
 			}
 
-			//get y errors
+			//get y errors depending on style and count
 			for (int i = 0; i < y_error_count; i++) {
 				switch (y_error_flags[i]) {
 				case 'S':
@@ -268,26 +271,19 @@ int main(int argc, char** argv) {
 	//printing for error check
 	if (print_test) {
 		for (int i = 0; i < y_count; i++) {
-			std::cout << "print loop: " << i << std::endl;
-			for (int j = 0; j < y_ttl[i].size(); j++) {
-				std::cout << "y: " << y_ttl[i][j] << std::endl;
-			}
-			for (int j = 0; j < x_ttl[i].size(); j++) {
-				std::cout << "x: " << x_ttl[i][j] << std::endl;
-			}
-			for (int j = 0; j < x_low_ttl[i].size(); j++) {
-				std::cout << "x low: " << x_low_ttl[i][j] << std::endl;
-			}
-			for (int j = 0; j < x_high_ttl[i].size(); j++) {
-				std::cout << "x high: " << x_high_ttl[i][j] << std::endl;
-			}
-			for (int j = 0; j < x_stat_ttl[i].size(); j++) {
-				std::cout << "x stat: " << x_stat_ttl[i][j] << std::endl;
-			}
-			for (int j = 0; j < x_sys_ttl[i].size(); j++) {
-				std::cout << "x sys: " << x_sys_ttl[i][j] << std::endl;
-			}
-
+			std::cout << std::endl << "print loop: " << i << std::endl;
+			for (int j = 0; j < y_ttl[i].size(); j++) { std::cout << "y: " << y_ttl[i][j] << std::endl; }
+			std::cout << std::endl;
+			for (int j = 0; j < x_ttl[i].size(); j++) { std::cout << "x: " << x_ttl[i][j] << std::endl; }
+			std::cout << std::endl;
+			for (int j = 0; j < x_low_ttl[i].size(); j++) { std::cout << "x low: " << x_low_ttl[i][j] << std::endl; }
+			std::cout << std::endl;
+			for (int j = 0; j < x_high_ttl[i].size(); j++) { std::cout << "x high: " << x_high_ttl[i][j] << std::endl; }
+			std::cout << std::endl;
+			for (int j = 0; j < x_stat_ttl[i].size(); j++) { std::cout << "x stat: " << x_stat_ttl[i][j] << std::endl; }
+			std::cout << std::endl;
+			for (int j = 0; j < x_sys_ttl[i].size(); j++) { std::cout << "x sys: " << x_sys_ttl[i][j] << std::endl; }
+			std::cout << std::endl;
 			for (int j = 0; j < y_error_ttl[i].size(); j++) {
 				for (int k = 0; k < y_error_ttl[i][j].size(); k++) {
 					for (int l = 0; l < y_error_ttl[i][j][k].size(); l++) {
@@ -320,8 +316,9 @@ int main(int argc, char** argv) {
 						break;
 					case 'A':
 						fout << "    errors:" << std::endl;
-						fout << "    - asymerror: {minus: " << x_stat_ttl[i][(2 * j) + 1] << ", plus: " << x_stat_ttl[i][2 * j] << "}" << std::endl;
-						fout << "    - label: stat}" << std::endl;
+						//fout << "    - asymerror: {minus: " << x_stat_ttl[i][(2 * j) + 1] << ", plus: " << x_stat_ttl[i][2 * j] << "}" << std::endl;
+						fout << "    - {asymerror: {plus: " << x_sys_ttl[i][(2 * j) + 1] << ", minus: " << x_sys_ttl[i][2 * j] << ", label: stat}}" << std::endl;
+						//fout << "    - label: stat}" << std::endl;
 						break;
 					case 'N':
 						break;
@@ -337,7 +334,8 @@ int main(int argc, char** argv) {
 						break;
 					case 'A':
 						fout << "    errors:" << std::endl;
-						fout << "    - asymerror: {minus: " << x_sys_ttl[i][(2 * j) + 1] << ", plus: " << x_sys_ttl[i][2 * j] << "}" << std::endl;
+						//fout << "    - asymerror: {minus: " << x_sys_ttl[i][(2 * j) + 1] << ", plus: " << x_sys_ttl[i][2 * j] << "}" << std::endl;
+						fout << "    - {asymerror: {plus: " << x_sys_ttl[i][(2 * j) + 1] << ", minus: " << x_sys_ttl[i][2 * j] << ", label: stat}}" << std::endl;
 						fout << "    - label: sys}" << std::endl;
 						break;
 					case 'N':
@@ -363,8 +361,11 @@ int main(int argc, char** argv) {
 						break;
 					case 'A':
 						fout << "    errors:" << std::endl;
-						fout << "    - asymerror: {minus: " << x_stat_ttl[i][(2 * j) + 1] << ", plus: " << x_stat_ttl[i][2 * j] << "}" << std::endl;
-						fout << "    - label: stat}" << std::endl;
+						//fout << "    - asymerror: {minus: " << x_stat_ttl[i][(2 * j) + 1] << ", plus: " << x_stat_ttl[i][2 * j] << "}" << std::endl;
+						fout << "    - {asymerror: {plus: " << x_sys_ttl[i][(2 * j) + 1] << ", minus: " << x_sys_ttl[i][2 * j] << ", label: stat}}" << std::endl;
+						//fout << "    - label: stat}" << std::endl;
+						break;
+					case 'N':
 						break;
 					default:
 						std::cerr << "Specify symmetric or asymmetric for binned X stat error style" << std::endl;
@@ -378,8 +379,9 @@ int main(int argc, char** argv) {
 						break;
 					case 'A':
 						fout << "    errors:" << std::endl;
-						fout << "    - asymerror: {minus: " << x_sys_ttl[i][(2 * j) + 1] << ", plus: " << x_sys_ttl[i][2 * j] << "}" << std::endl;
-						fout << "    - label: sys}" << std::endl;
+						//fout << "    - asymerror: {minus: " << x_sys_ttl[i][(2 * j) + 1] << ", plus: " << x_sys_ttl[i][2 * j] << "}" << std::endl;
+						fout << "    - {asymerror: {plus: " << x_sys_ttl[i][(2 * j) + 1] << ", minus: " << x_sys_ttl[i][2 * j] << ", label: stat}}" << std::endl;
+						//fout << "    - label: sys}" << std::endl;
 						break;
 					case 'N':
 						break;
@@ -408,8 +410,7 @@ int main(int argc, char** argv) {
 							break;
 						case 'A':
 							if (k == 0) fout << "    errors:" << std::endl;
-							fout << "    - asymerror: {minus: " << y_error_ttl[i][j][k][0] << ", plus: " << y_error_ttl[i][j][k][1] << "}" << std::endl;
-							fout << "    - label: " << y_error_titles[k] << std::endl;
+							fout << "    - {asymerror: {plus: " << y_error_ttl[i][j][k][0] << ", minus: " << y_error_ttl[i][j][k][1] << ", label: " << y_error_titles[k] << "}}" << std::endl;
 							break;
 						case 'N':
 							break;
