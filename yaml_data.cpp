@@ -316,9 +316,7 @@ int main(int argc, char** argv) {
 						break;
 					case 'A':
 						fout << "    errors:" << std::endl;
-						//fout << "    - asymerror: {minus: " << x_stat_ttl[i][(2 * j) + 1] << ", plus: " << x_stat_ttl[i][2 * j] << "}" << std::endl;
 						fout << "    - {asymerror: {plus: " << x_sys_ttl[i][(2 * j) + 1] << ", minus: " << x_sys_ttl[i][2 * j] << ", label: stat}}" << std::endl;
-						//fout << "    - label: stat}" << std::endl;
 						break;
 					case 'N':
 						break;
@@ -334,7 +332,6 @@ int main(int argc, char** argv) {
 						break;
 					case 'A':
 						fout << "    errors:" << std::endl;
-						//fout << "    - asymerror: {minus: " << x_sys_ttl[i][(2 * j) + 1] << ", plus: " << x_sys_ttl[i][2 * j] << "}" << std::endl;
 						fout << "    - {asymerror: {plus: " << x_sys_ttl[i][(2 * j) + 1] << ", minus: " << x_sys_ttl[i][2 * j] << ", label: stat}}" << std::endl;
 						fout << "    - label: sys}" << std::endl;
 						break;
@@ -361,9 +358,7 @@ int main(int argc, char** argv) {
 						break;
 					case 'A':
 						fout << "    errors:" << std::endl;
-						//fout << "    - asymerror: {minus: " << x_stat_ttl[i][(2 * j) + 1] << ", plus: " << x_stat_ttl[i][2 * j] << "}" << std::endl;
 						fout << "    - {asymerror: {plus: " << x_sys_ttl[i][(2 * j) + 1] << ", minus: " << x_sys_ttl[i][2 * j] << ", label: stat}}" << std::endl;
-						//fout << "    - label: stat}" << std::endl;
 						break;
 					case 'N':
 						break;
@@ -379,9 +374,7 @@ int main(int argc, char** argv) {
 						break;
 					case 'A':
 						fout << "    errors:" << std::endl;
-						//fout << "    - asymerror: {minus: " << x_sys_ttl[i][(2 * j) + 1] << ", plus: " << x_sys_ttl[i][2 * j] << "}" << std::endl;
 						fout << "    - {asymerror: {plus: " << x_sys_ttl[i][(2 * j) + 1] << ", minus: " << x_sys_ttl[i][2 * j] << ", label: stat}}" << std::endl;
-						//fout << "    - label: sys}" << std::endl;
 						break;
 					case 'N':
 						break;
