@@ -2,7 +2,6 @@ $p_T^h p+p/Au+Au 0-20% Centrality$
 1
 $1/N_(trig)dN/dp_t(h)[GeV/c]^(-1)$
 description
-description
 yes
 no
 no
