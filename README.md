@@ -100,4 +100,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Dr. Christine Nattrass
+christine.nattrass@utk.edu 
 * PHYS493 group
+* Christal Martin
+cbaillar@vols.utk.edu 
