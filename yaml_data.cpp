@@ -317,7 +317,7 @@ int main(int argc, char** argv) {
 						break;
 					case 'A':
 						fout << "    errors:" << std::endl;
-						fout << "    - {asymerror: {plus: " << x_sys_ttl[i][(2 * j) + 1] << ", minus: " << x_sys_ttl[i][2 * j] << ", label: stat}}" << std::endl;
+						fout << "    - {asymerror: {plus: " << x_sys_ttl[i][(2 * j) + 1] << ", minus: " << x_sys_ttl[i][2 * j] << "}, label: stat}" << std::endl;
 						break;
 					case 'N':
 						break;
@@ -333,7 +333,7 @@ int main(int argc, char** argv) {
 						break;
 					case 'A':
 						fout << "    errors:" << std::endl;
-						fout << "    - {asymerror: {plus: " << x_sys_ttl[i][(2 * j) + 1] << ", minus: " << x_sys_ttl[i][2 * j] << ", label: stat}}" << std::endl;
+						fout << "    - {asymerror: {plus: " << x_sys_ttl[i][(2 * j) + 1] << ", minus: " << x_sys_ttl[i][2 * j] << "}, label: stat}" << std::endl;
 						fout << "    - label: sys}" << std::endl;
 						break;
 					case 'N':
@@ -348,7 +348,7 @@ int main(int argc, char** argv) {
 
 			if ((!x_low_ttl[i].empty()) && (!x_high_ttl[i].empty()) && i == 0) {
 				if (i == 0) fout << "independent_variables:" << std::endl;
-				fout << "- header: {name: " << x_title << "}";
+				fout << "- header: {name: " << x_title << "}" << std::endl;
 				fout << "  values:" << std::endl;
 				for (int j = 0; j < x_low_ttl[i].size(); j++) {
 					fout << "  - {low: " << x_low_ttl[i][j] << ", high: " << x_high_ttl[i][j] << "}" << std::endl;
@@ -359,7 +359,7 @@ int main(int argc, char** argv) {
 						break;
 					case 'A':
 						fout << "    errors:" << std::endl;
-						fout << "    - {asymerror: {plus: " << x_sys_ttl[i][(2 * j) + 1] << ", minus: " << x_sys_ttl[i][2 * j] << ", label: stat}}" << std::endl;
+						fout << "    - {asymerror: {plus: " << x_sys_ttl[i][(2 * j) + 1] << ", minus: " << x_sys_ttl[i][2 * j] << "}, label: stat}" << std::endl;
 						break;
 					case 'N':
 						break;
@@ -375,7 +375,7 @@ int main(int argc, char** argv) {
 						break;
 					case 'A':
 						fout << "    errors:" << std::endl;
-						fout << "    - {asymerror: {plus: " << x_sys_ttl[i][(2 * j) + 1] << ", minus: " << x_sys_ttl[i][2 * j] << ", label: stat}}" << std::endl;
+						fout << "    - {asymerror: {plus: " << x_sys_ttl[i][(2 * j) + 1] << ", minus: " << x_sys_ttl[i][2 * j] << "}, label: stat}" << std::endl;
 						break;
 					case 'N':
 						break;
@@ -404,7 +404,7 @@ int main(int argc, char** argv) {
 							break;
 						case 'A':
 							if (k == 0) fout << "    errors:" << std::endl;
-							fout << "    - {asymerror: {plus: " << y_error_ttl[i][j][k][0] << ", minus: " << y_error_ttl[i][j][k][1] << ", label: " << y_error_titles[k] << "}}" << std::endl;
+							fout << "    - {asymerror: {plus: " << y_error_ttl[i][j][k][0] << ", minus: " << y_error_ttl[i][j][k][1] << "}, label: " << y_error_titles[k] << "}" << std::endl;
 							break;
 						case 'N':
 							break;

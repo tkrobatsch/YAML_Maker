@@ -79,6 +79,11 @@ If all files are set up one command can be run to produce files for many inputs 
 find . -exec yaml_data debug {} \;
 ```
 
+##Video instructions
+For an detailed tutorial on how to format data for HEPData including details and examples of using YAML maker check out this video.
+https://youtu.be/_hz6EVPeuW4
+
+The channel also has great videos about QGP. Enjoy!
 
 ## Authors
 
