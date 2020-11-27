@@ -177,11 +177,14 @@ int main(int argc, char** argv) {
 			switch (bin_flag) {
 			case 'Y':
 				ss >> temp;
-				found = temp.find("-");
+				x_low.push_back(temp);
+				ss >> temp;
+				x_high.push_back(temp);
+				/*				found = temp.find("-");
 				if (found != std::string::npos) {
 					x_low.push_back(temp.substr(0, found));
 					x_high.push_back(temp.substr(found + 1));
-				}
+					}*/
 				break;
 			case 'N':
 				ss >> temp;
