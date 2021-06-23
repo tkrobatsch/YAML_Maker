@@ -21,7 +21,7 @@ comment: |
 additional_resources:
 - {description: Image file, location: Raa.png}
 - {description: Thumbnail Image file, location: thumb_Raa.png}
-data_file: table_0.yaml
+data_file: xbinwitherrors.yaml
 description: Pups save the analysis logic
 keywords:
 - name: reactions
@@ -35,7 +35,7 @@ name: Figure 1a
 additional_resources:
 - {description: Image file, location: Raa.png}
 - {description: Thumbnail Image file, location: thumb_Raa.png}
-data_file: table_1.yaml
+data_file: xbinwitherrors.yaml
 description: Pups save the data points
 keywords:
 - name: reactions
